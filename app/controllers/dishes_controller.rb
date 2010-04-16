@@ -25,7 +25,10 @@ class DishesController < ApplicationController
   # GET /dishes/new.xml
   def new
     @dish = Dish.new
-
+    @categories = Array.new()
+    Category.find(:all).each do |category|
+      @categories[@categories.size] = [category.title, category.id]
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @dish }
@@ -35,6 +38,10 @@ class DishesController < ApplicationController
   # GET /dishes/1/edit
   def edit
     @dish = Dish.find(params[:id])
+    @categories = Array.new()
+    Category.find(:all).each do |category|
+      @categories[@categories.size] = [category.title, category.id]
+    end
   end
 
   # POST /dishes
