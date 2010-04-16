@@ -1,5 +1,5 @@
 <p>
-  <b>Title:</b>
+  <b>Category:</b>
   <%=h @category.title %>
 </p>
 <p>
@@ -9,4 +9,18 @@
 
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<%= link_to 'All Categories', categories_path %>
+<% if @category.dishes.empty? %>
+<p>
+  <b>No Dishes on Category</b>
+</p>
+<% else %>
+<p>
+  <b>Dishes on Category:</b>
+</p>
+<% @category.dishes.each do |dish| %>
+<p>
+  <%= link_to dish.title, dish %>
+</p>
+<% end %>
+<% end %>
