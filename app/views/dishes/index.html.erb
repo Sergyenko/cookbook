@@ -3,15 +3,13 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Ingredients</th>
-    <th>Instructions</th>
+    <th>Category</th>
   </tr>
 
 <% @dishes.each do |dish| %>
   <tr>
     <td><%=h dish.title %></td>
-    <td><%=h dish.ingredients %></td>
-    <td><%=h dish.instructions %></td>
+    <td><%=h dish.category.title %></td>
     <td><%= link_to 'Show', dish %></td>
     <td><%= link_to 'Edit', edit_dish_path(dish) %></td>
     <td><%= link_to 'Destroy', dish, :confirm => 'Are you sure?', :method => :delete %></td>
