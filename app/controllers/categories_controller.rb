@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   # GET /categories.xml
   def index
     @categories = Category.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @categories }
@@ -75,6 +75,13 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1.xml
   def destroy
     @category = Category.find(params[:id])
+
+    Dish.all.each do |dish|
+      if dish.category_id == params[:id].to_i
+       dish.update_attributes(:category_id => '1')
+      end
+    end
+    
     @category.destroy
 
     respond_to do |format|
