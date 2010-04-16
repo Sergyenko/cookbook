@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  dish_id: 1
+  title: MyString
+
+two:
+  dish_id: 1
+  title: MyString

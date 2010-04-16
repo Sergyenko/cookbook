@@ -1,0 +1,18 @@
+<p>
+  <b>Title:</b>
+  <%=h @dish.title %>
+</p>
+
+<p>
+  <b>Ingredients:</b>
+  <%=h @dish.ingredients %>
+</p>
+
+<p>
+  <b>Instructions:</b>
+  <%=h @dish.instructions %>
+</p>
+
+
+<%= link_to 'Edit', edit_dish_path(@dish) %> |
+<%= link_to 'Back', dishes_path %>
