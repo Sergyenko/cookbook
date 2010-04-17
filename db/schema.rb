@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(:version => 20100416123311) do
   create_table "categories", :force => true do |t|
     t.string   "title"
     t.text     "description"
+    t.boolean  "is_deleted",  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -23,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20100416123311) do
     t.string   "title"
     t.text     "ingredients"
     t.text     "instructions"
+    t.boolean  "is_deleted",   :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

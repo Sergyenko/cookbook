@@ -5,7 +5,7 @@ class CreateDishes < ActiveRecord::Migration
       t.string  :title
       t.text    :ingredients
       t.text    :instructions
-
+      t.boolean :is_deleted, :default => false
       t.timestamps
     end
   end
