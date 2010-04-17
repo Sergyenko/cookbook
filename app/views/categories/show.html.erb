@@ -4,11 +4,14 @@
 </p>
 <p>
   <b>Description:</b>
+</p>
+<p>
   <%=h @category.description %>
 </p>
-
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Edit', edit_category_path(@category) %>&nbsp;|&nbsp;
+<% if @category.id != 1 %> 
+<%=  link_to 'Move to Trash', @category, :method => :delete %>&nbsp;|&nbsp;
+<% end %>
 <%= link_to 'All Categories', categories_path %>
 <% if @category.dishes.empty? %>
 <p>
@@ -16,11 +19,18 @@
 </p>
 <% else %>
 <p>
-  <b>Dishes on Category:</b>
+  <b>Dishes on Category: <%= @category.dishes.size %></b>
 </p>
+<% @iterator = 1 %>
 <% @category.dishes.each do |dish| %>
-<p>
-  <%= link_to dish.title, dish %>
-</p>
+<div>
+  <%= @iterator %>.&nbsp;
+   <% if !dish.is_deleted %>
+     <%= link_to  dish.title, dish %>
+   <% else %>
+     <%= dish.title %>&nbsp;<%= link_to 'Currently removed to trash', :controller => :trash %>
+    <% end %>
+  <% @iterator += 1 %>
+</div>
 <% end %>
 <% end %>

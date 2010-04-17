@@ -2,7 +2,7 @@ class DishesController < ApplicationController
   # GET /dishes
   # GET /dishes.xml
   def index
-    @dishes = Dish.all
+    @dishes = Dish.find(:all,:conditions => "is_deleted = 0").sort_by(&:category_id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,7 +26,7 @@ class DishesController < ApplicationController
   def new
     @dish = Dish.new
     @categories = Array.new()
-    Category.find(:all).each do |category|
+    Category.find(:all, :conditions => "is_deleted = 0").each do |category|
       @categories[@categories.size] = [category.title, category.id]
     end
     respond_to do |format|
@@ -39,7 +39,7 @@ class DishesController < ApplicationController
   def edit
     @dish = Dish.find(params[:id])
     @categories = Array.new()
-    Category.find(:all).each do |category|
+    Category.find(:all, :conditions => "is_deleted = 0").each do |category|
       @categories[@categories.size] = [category.title, category.id]
     end
   end
@@ -82,7 +82,8 @@ class DishesController < ApplicationController
   # DELETE /dishes/1.xml
   def destroy
     @dish = Dish.find(params[:id])
-    @dish.destroy
+    @dish.update_attributes(:is_deleted => true)
+    #@dish.destroy
 
     respond_to do |format|
       format.html { redirect_to(dishes_url) }

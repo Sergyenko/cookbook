@@ -1,0 +1,39 @@
+<h1>Trash</h1>
+<p>
+    <b>Categories:</b>
+  </p>
+<table>
+<% if @categories.empty? %>
+  Empty
+<% else %>
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= h category.title %></td>
+    <td>Deleted at: <%= category.updated_at.to_s(:long) %></td>
+    <td><%= link_to 'Restore', :controller => :trash, :action => :restore_category, :id => category.id %></td>
+  </tr>
+<% end %>
+<% end %>
+</table>
+<p>
+    <b>Dishes:</b>
+</p>
+<table>
+<% if @dishes.empty? %>
+  Empty
+<% else %>
+  <% @dishes.each do |dish| %>
+    <tr>
+      <td><%= h dish.title %></td>
+      <td><%= link_to dish.category.title, dish.category %></td>
+      <td>Deleted at: <%= dish.updated_at.to_s(:long) %></td>
+      <td><%= link_to 'Restore', :controller => :trash, :action => :restore_dish, :id => dish.id %></td>
+    </tr>
+  <% end %>
+<% end %>
+</table>
+<br />
+
+<%= link_to 'Empty Trash', :controller => :trash, :action => :empty %>&nbsp;|&nbsp;
+<%= link_to 'All Categories', categories_path %>&nbsp;|&nbsp;
+<%= link_to 'All Dishes', dishes_path %>

@@ -1,13 +1,11 @@
-<h1>Listing categories</h1>
+<h1>Categories</h1>
 
 <table>
  <% @categories.each do |category| %>
   <tr>
-    <td><%=h category.title %></td>
-    <td><%= link_to 'Show', category %></td>
+    <td><%=link_to category.title, category %>&nbsp;(<%= category.dishes.size %>)</td>
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    
-    <td><%= category.id == 1 ? '' : (link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete) %></td>
+    <td><%= category.id == 1 ? '' : (link_to '[x]', category, :method => :delete) %></td>
     
   </tr>
 <% end %>
@@ -15,4 +13,6 @@
 
 <br />
 
-<%= link_to 'New category', new_category_path %>
+<%= link_to 'Add Category', new_category_path %>&nbsp;|&nbsp;
+<%= link_to 'All Dishes', dishes_path %>&nbsp;|&nbsp;
+<%= link_to 'Trash', :controller => :trash, :action => :index %>

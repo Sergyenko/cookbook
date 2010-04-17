@@ -19,5 +19,6 @@
 </p>
 
 
-<%= link_to 'Edit', edit_dish_path(@dish) %> |
+<%= link_to 'Edit', edit_dish_path(@dish) %>&nbsp;|&nbsp;
+<%= link_to 'Move to Trash', @dish, :method => :delete %>&nbsp;|&nbsp;
 <%= link_to 'All Dishes', dishes_path %>

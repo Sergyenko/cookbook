@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.xml
   def index
-    @categories = Category.all
+    @categories = Category.find(:all, :conditions => "is_deleted = 0")
     
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.xml
   def show
-    @category = Category.find(params[:id])
+    @category = Category.find(params[:id], :conditions => "is_deleted = 0")
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +34,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
-    @category = Category.find(params[:id])
+    @category = Category.find(params[:id], :conditions => "is_deleted = 0")
   end
 
   # POST /categories
@@ -57,7 +57,7 @@ class CategoriesController < ApplicationController
   # PUT /categories/1
   # PUT /categories/1.xml
   def update
-    @category = Category.find(params[:id])
+    @category = Category.find(params[:id], :conditions => "is_deleted = 0")
 
     respond_to do |format|
       if @category.update_attributes(params[:category])
@@ -81,8 +81,8 @@ class CategoriesController < ApplicationController
        dish.update_attributes(:category_id => '1')
       end
     end
-    
-    @category.destroy
+    @category.update_attributes(:is_deleted => true)
+    #@category.destroy
 
     respond_to do |format|
       format.html { redirect_to(categories_url) }
