@@ -84,7 +84,7 @@ class DishesController < ApplicationController
       format.html { redirect_to :back }
       format.js   {
         @dish = Dish.find(params[:id])
-        @dish.update_attributes(:is_deleted => true)
+        @dish.update_attributes(:is_deleted => '1')
         @dishes = Dish.find(:all,:conditions => "is_deleted = 0").sort_by{|p| p['id']}
         render :partial => 'list_of_dishes'
        }

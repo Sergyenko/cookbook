@@ -88,7 +88,7 @@ class CategoriesController < ApplicationController
            dish.update_attributes(:category_id => '1')
           end
         end
-        @category.update_attributes(:is_deleted => true)
+        @category.update_attributes(:is_deleted => '1')
         @categories = Category.find(:all, :conditions => "is_deleted = 0")
         render :partial => 'list_of_categories'
       }
