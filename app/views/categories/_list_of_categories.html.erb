@@ -1,0 +1,51 @@
+<table>
+  <th></th>
+  <th align="left">
+    <%= link_to_remote 'Category', 
+        :url => {:action => :sort, :key => 'title'},
+        :update => 'container',
+        :before => "$('loader').show()",
+        :complete => "$('loader').hide()"
+    %>
+  </th>
+  <th align="left">
+    <%= link_to_remote 'Created',
+        :url => {:action => :sort, :key => 'created_at'},
+        :update => 'container',
+        :before => "$('loader').show()",
+        :complete => "$('loader').hide()"
+      %>
+  </th>
+  <th align="left">
+    <%= link_to_remote 'Updated', 
+        :url => {:action => :sort, :key => 'updated_at'},
+        :update => 'container',
+        :before => "$('loader').show()",
+        :complete => "$('loader').hide()"
+      %>
+  </th>
+
+ <% @categories.each do |category| %>
+  <tr>
+    <td>.</td>
+    <td><%=link_to category.title, category %>&nbsp;(<%= category.dishes.size %>)</td>
+    <td><%= category.created_at.to_s(:short) %></td>
+    <td><%= category.updated_at.to_s(:short) %></td>
+    <td><%= link_to 'Edit', edit_category_path(category) %></td>
+    <td>
+      <%  if category.id != 1 %>
+       <%= link_to_remote '[x]',
+          :url => {:action => :destroy, :id => category.id},
+          :method => :delete,
+          #:confirm => 'Are you sure you want to move to trash selected category?',
+          :update => 'container',
+          :before => "$('loader').show()",
+        :complete => "$('loader').hide()"
+        %>
+      <% end %>
+    </td>
+
+  </tr>
+<% end %>
+</table>
+<br>

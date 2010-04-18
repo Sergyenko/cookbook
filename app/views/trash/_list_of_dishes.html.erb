@@ -1,0 +1,25 @@
+<% if @dishes.empty? %>
+<p>
+  Empty
+</p>
+<% else %>
+  <% @dishes.each do |dish| %>
+  <table>
+  <tr>
+      <td><%= h dish.title %></td>
+      <td><%= link_to dish.category.title, dish.category %></td>
+      <td>Deleted at: <%= dish.updated_at.to_s(:long) %></td>
+      <td>
+          <%= link_to_remote 'Restore',
+            :url => {:controller => :trash, :action => :restore_dish, :id => dish.id},
+            :update => 'dishes_container',
+            :before => "$('loader').show()",
+            :complete => "$('loader').hide()"
+          %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+  <br>
+<% end %>
+

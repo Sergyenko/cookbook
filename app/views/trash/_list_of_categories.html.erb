@@ -1,0 +1,20 @@
+<% if @categories.empty? %>
+  Empty
+<% else %>
+<table>
+ <% @categories.each do |category| %>
+  <tr>
+    <td><%= h category.title %></td>
+    <td>Deleted at: <%= category.updated_at.to_s(:long) %></td>
+    <td>
+      <%= link_to_remote 'Restore',
+        :url => {:controller => :trash, :action => :restore_category, :id => category.id},
+        :update => 'categories_container',
+        :before => "$('loader').show()",
+        :complete => "$('loader').hide()"
+      %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<% end %>

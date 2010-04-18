@@ -1,0 +1,62 @@
+<% if @category.dishes.empty? %>
+<p>
+  <b>No Dishes on Category</b>
+</p>
+<% else %>
+<p>
+  <b>Dishes on Category: <%= @category.dishes.size %></b>
+</p>
+<table>
+   <tr>
+    <th></th>
+    <th align="left">
+     <%= link_to_remote 'Dish',
+        :url => {:action => :sort_dishes_on_categry, :id => @category.id, :key => 'title'},
+        :update => 'container',
+        :before => "$('loader').show()",
+        :complete => "$('loader').hide()"
+      %>
+    </th>
+    <th align="left">
+      <%= link_to_remote 'Created',
+        :url => {:action => :sort_dishes_on_categry, :id => @category.id, :key => 'created_at'},
+        :update => 'container',
+        :before => "$('loader').show()",
+        :complete => "$('loader').hide()"
+      %>
+    </th>
+    <th align="left">
+      <%= link_to_remote 'Updated',
+        :url => {:action => :sort_dishes_on_categry, :id => @category.id, :key => 'updated_at'},
+        :update => 'container',
+        :before => "$('loader').show()",
+        :complete => "$('loader').hide()"
+      %>
+    </th>
+  </tr>
+  <% @dishes.each do |dish| %>
+   <tr>
+    <td>.</td>
+    <td><%= link_to dish.title, dish %></td>
+    <td><%= dish.created_at.to_s(:short) %></td>
+    <td><%= dish.updated_at.to_s(:short) %></td>
+    <td><%= link_to 'Edit', edit_dish_path(dish) %></td>
+    <td>
+        <%if dish.is_deleted %>
+        <%=  link_to 'Currently removed to trash', :controller => :trash %>
+        <% else %>
+        <%= link_to_remote '[x]',
+          :url => {:action => :destroy_dishes_on_category,:id => @category.id ,:dish_id => dish.id},
+          #:confirm => 'Are you sure you want to move to trash selected dish?',
+          :update => 'container',
+          :before => "$('loader').show()",
+        :complete => "$('loader').hide()"
+        %>
+      <% end %>
+    </td>
+  </tr>
+
+<% end %>
+</table>
+<% end %>
+<br />
