@@ -17,14 +17,14 @@
   <b>Ingredients:</b>
 </p>
 <div class="dish_content">
-  <%=h @dish.ingredients %>
+  <%=@dish.ingredients %>
 </div>
 
 <p class="dish_title">
   <b>Instructions:</b>
  </p>
  <div class="dish_content">
-  <%=h @dish.instructions %>
+  <%=@dish.instructions %>
  </div>
 <div id="controllinks">
 <%= link_to 'Edit Dish', edit_dish_path(@dish) %>&nbsp;|
