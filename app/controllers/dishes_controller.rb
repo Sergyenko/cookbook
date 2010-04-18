@@ -1,6 +1,5 @@
 class DishesController < ApplicationController
-  # GET /dishes
-  # GET /dishes.xml
+  
   def index
     
     @dishes = Dish.find(:all,:conditions => "is_deleted = 0").sort_by{|p| p['id']}
@@ -10,8 +9,6 @@ class DishesController < ApplicationController
     end
   end
 
-  # GET /dishes/1
-  # GET /dishes/1.xml
   def show
     @dish = Dish.find(params[:id])
 
@@ -20,8 +17,7 @@ class DishesController < ApplicationController
       format.xml  { render :xml => @dish }
     end
   end
-  # GET /dishes/new
-  # GET /dishes/new.xml
+  
   def new
     @dish = Dish.new
     @categories = Array.new()
@@ -34,7 +30,6 @@ class DishesController < ApplicationController
     end
   end
 
-  # GET /dishes/1/edit
   def edit
     @dish = Dish.find(params[:id])
     @categories = Array.new()
@@ -43,8 +38,6 @@ class DishesController < ApplicationController
     end
   end
 
-  # POST /dishes
-  # POST /dishes.xml
   def create
     @dish = Dish.new(params[:dish])
 
@@ -60,8 +53,6 @@ class DishesController < ApplicationController
     end
   end
 
-  # PUT /dishes/1
-  # PUT /dishes/1.xml
   def update
     @dish = Dish.find(params[:id])
 
@@ -77,8 +68,6 @@ class DishesController < ApplicationController
     end
   end
 
-  # DELETE /dishes/1
-  # DELETE /dishes/1.xml
   def destroy
       respond_to do |format|
       format.html { redirect_to :back }

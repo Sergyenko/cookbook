@@ -1,6 +1,5 @@
 class CategoriesController < ApplicationController
-  # GET /categories
-  # GET /categories.xml
+ 
   def index
     @categories = Category.find(:all, :conditions => "is_deleted = 0")
     
@@ -10,23 +9,18 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # GET /categories/1
-  # GET /categories/1.xml
-  def show
-    params[:sort].blank? ? sortby = 'title' : sortby = params[:sort]
+   def show
 
+    params[:sort].blank? ? sortby = 'title' : sortby = params[:sort]
     @category = Category.find(params[:id], :conditions => "is_deleted = 0")
     @dishes = @category.dishes.sort_by{|p| p['created_at']}
-    
-
+   
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @category }
     end
   end
 
-  # GET /categories/new
-  # GET /categories/new.xml
   def new
     @category = Category.new
 
@@ -36,13 +30,10 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # GET /categories/1/edit
   def edit
     @category = Category.find(params[:id], :conditions => "is_deleted = 0")
   end
 
-  # POST /categories
-  # POST /categories.xml
   def create
     @category = Category.new(params[:category])
 
@@ -58,8 +49,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # PUT /categories/1
-  # PUT /categories/1.xml
   def update
     @category = Category.find(params[:id], :conditions => "is_deleted = 0")
 
@@ -75,8 +64,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # DELETE /categories/1
-  # DELETE /categories/1.xml
   def destroy
 
     respond_to do |format|
@@ -116,6 +103,7 @@ class CategoriesController < ApplicationController
       }
     end
   end
+
   def destroy_dishes_on_category
     respond_to do |format|
       format.js   {
