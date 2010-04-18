@@ -42,7 +42,7 @@
     <td><%= dish.updated_at.to_s(:short) %></td>
     <td><%= link_to 'Edit', edit_dish_path(dish) %></td>
     <td>
-        <%if dish.is_deleted %>
+        <%if dish.is_deleted == 1 %>
         <%=  link_to 'Currently removed to trash', :controller => :trash %>
         <% else %>
         <%= link_to_remote '[x]',
