@@ -1,23 +1,32 @@
-<p>
-  <b>Title:</b>
-  <%=h @dish.title %>
-</p>
+<h1><%=h @dish.title %></h1>
 
 <p>
   <b>Category:</b>
   <%=h @dish.category.title %>
 </p>
-
 <p>
+  <b>Created:</b>
+  <%=h @dish.created_at.to_s(:short) %>
+</p>
+<p>
+  <b>Updated:</b>
+  <%=h @dish.updated_at.to_s(:short) %>
+</p>
+
+<p class="dish_title">
   <b>Ingredients:</b>
+</p>
+<div class="dish_content">
   <%=h @dish.ingredients %>
-</p>
+</div>
 
-<p>
+<p class="dish_title">
   <b>Instructions:</b>
+ </p>
+ <div class="dish_content">
   <%=h @dish.instructions %>
-</p>
-
-
+ </div>
+<div id="controllinks">
 <%= link_to 'Edit Dish', edit_dish_path(@dish) %>&nbsp;|
 <%= link_to 'All Dishes', dishes_path %>
+</div>

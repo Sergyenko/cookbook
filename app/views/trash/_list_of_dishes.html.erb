@@ -4,7 +4,7 @@
 </p>
 <% else %>
   <% @dishes.each do |dish| %>
-  <table>
+  <table id="itemlist">
   <tr>
       <td><%= h dish.title %></td>
       <td><%= link_to dish.category.title, dish.category %></td>

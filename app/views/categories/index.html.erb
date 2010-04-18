@@ -1,8 +1,10 @@
-<h1>Categories&nbsp;<span id="loader" style="display:none"><%=  image_tag 'loader.gif'%></span></h1>
+<h1>Categories</h1>
+<div id="loadercontainer">|<span id="loader" style="display:none"><%=  image_tag 'loader.gif'%></span>|</div>
 <div id="container">
   <%= render :partial => 'list_of_categories' %>
 </div>
-
-<%= link_to 'Add New Category', new_category_path %>&nbsp;|
-<%= link_to 'All Dishes', dishes_path %>&nbsp;|
-<%= link_to 'Trash', :controller => :trash, :action => :index %>
+<div id="controllinks">
+  <%= link_to 'Add New Category', new_category_path %>&nbsp;|
+  <%= link_to 'All Dishes', dishes_path %>&nbsp;|
+  <%= link_to 'Trash', :controller => :trash, :action => :index %>
+</div>

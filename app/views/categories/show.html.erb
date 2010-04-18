@@ -1,17 +1,20 @@
-<h1><%=h @category.title %>&nbsp;<span id="loader" style="display:none"><%=  image_tag 'loader.gif'%></span></h1>
-<p>
+<h1><%=h @category.title %></h1>
+
+<p class="dish_title">
   <b>Descriptions:</b>
-  <%=h @category.description %>
 </p>
 
+<div class="dish_content">
+  <%=h @category.description %>
+</div>
+<br>
 <%= link_to 'Edit Category', edit_category_path(@category) %>
 
 <div id="container">
   <%= render :partial => 'list_of_dishes' %>
 </div>
-
-<%= link_to 'All Dishes', dishes_path %>&nbsp;|
-<%= link_to 'All Categories', categories_path %>&nbsp;|
-<%= link_to 'Trash', :controller => :trash, :action => :index %>
-<br>
-<%= flash[:foo] %>
+<div id="controllinks">
+  <%= link_to 'All Dishes', dishes_path %>&nbsp;|
+  <%= link_to 'All Categories', categories_path %>&nbsp;|
+  <%= link_to 'Trash', :controller => :trash, :action => :index %>
+</div>

@@ -6,7 +6,8 @@
 <p>
   <b>Dishes on Category: <%= @category.dishes.size %></b>
 </p>
-<table>
+<div id="loadercontainer">|<span id="loader" style="display:none"><%=  image_tag 'loader.gif'%></span>|</div>
+<table id="itemlist">
    <tr>
     <th></th>
     <th align="left">

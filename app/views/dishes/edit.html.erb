@@ -5,15 +5,15 @@
 
   <p>
     <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :style => "width: 300px;" %>
   </p>
   <p>
     <%= f.label :ingredients %><br />
-    <%= f.text_area :ingredients %>
+    <%= f.text_area :ingredients, :style => "width: 500px; height: 200px;" %>
   </p>
   <p>
     <%= f.label :instructions %><br />
-    <%= f.text_area :instructions %>
+    <%= f.text_area :instructions, :style => "width: 500px; height: 200px;" %>
   </p>
   <p>
     <%= f.label :category %><br />
@@ -23,6 +23,7 @@
     <%= f.submit 'Update' %>
   </p>
 <% end %>
-
-<%= link_to 'Show', @dish %> |
-<%= link_to 'Back', dishes_path %>
+<div id="controllinks">
+  <%= link_to 'Show Dish', @dish %>&nbsp;|
+  <%= link_to 'All Dishes', dishes_path %>
+</div>
