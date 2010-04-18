@@ -2,8 +2,8 @@ class DishesController < ApplicationController
   # GET /dishes
   # GET /dishes.xml
   def index
-    @dishes = Dish.find(:all,:conditions => "is_deleted = 0").sort_by(&:category_id)
-
+    
+    @dishes = Dish.find(:all,:conditions => "is_deleted = 0").sort_by{|p| p['id']}
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @dishes }
@@ -20,7 +20,6 @@ class DishesController < ApplicationController
       format.xml  { render :xml => @dish }
     end
   end
-
   # GET /dishes/new
   # GET /dishes/new.xml
   def new
@@ -81,13 +80,25 @@ class DishesController < ApplicationController
   # DELETE /dishes/1
   # DELETE /dishes/1.xml
   def destroy
-    @dish = Dish.find(params[:id])
-    @dish.update_attributes(:is_deleted => true)
-    #@dish.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(dishes_url) }
+      respond_to do |format|
+      format.html { redirect_to :back }
+      format.js   {
+        @dish = Dish.find(params[:id])
+        @dish.update_attributes(:is_deleted => true)
+        @dishes = Dish.find(:all,:conditions => "is_deleted = 0").sort_by{|p| p['id']}
+        render :partial => 'list_of_dishes'
+       }
       format.xml  { head :ok }
+    end
+  end
+
+  def sort
+    respond_to do |format|
+      format.html
+      format.js {
+        @dishes = Dish.find(:all,:conditions => "is_deleted = 0").sort_by{|p| p[params[:key]]}
+        render :partial => 'list_of_dishes'
+      }
     end
   end
 end

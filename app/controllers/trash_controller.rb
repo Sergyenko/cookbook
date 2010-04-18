@@ -9,23 +9,37 @@ class TrashController < ApplicationController
   end
 
   def restore_dish
-    @dish = Dish.find(params[:id])
-    @dish.update_attributes(:is_deleted => false)
-    redirect_to :action => :index
+    respond_to do |format|
+      format.js{
+        @dish = Dish.find(params[:id])
+        @dish.update_attributes(:is_deleted => false)
+        @dishes = Dish.find(:all,:conditions => "is_deleted = 1").sort_by(&:category_id)
+        render :partial => 'list_of_dishes'
+      }
+    end
   end
 
   def restore_category
-    @categories = Category.find(params[:id])
-    @categories.update_attributes(:is_deleted => false)
-    redirect_to :action => :index
+    respond_to do |format|
+      format.js {
+        @category = Category.find(params[:id])
+        @category.update_attributes(:is_deleted => false)
+        @categories = Category.find(:all, :conditions => "is_deleted = 1")
+        render :partial => 'list_of_categories'
+      }
+    end
   end
 
   def empty
-
-    @dishes = Dish.find(:all,:conditions => "is_deleted = 1").sort_by(&:category_id)
+    @dishes = Dish.find(:all,:conditions => "is_deleted = 1")
+    @categories = Category.find(:all,:conditions => "is_deleted = 1")
 
     @dishes.each do |dish|
       dish.destroy
+    end
+
+    @categories.each do |category|
+      category.destroy
     end
     redirect_to :action => :index
   end
