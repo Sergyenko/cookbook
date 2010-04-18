@@ -1,39 +1,17 @@
-<h1>Trash</h1>
+<h1>Trash&nbsp;<span id="loader" style="display:none"><%=  image_tag 'loader.gif'%></span></h1>
 <p>
     <b>Categories:</b>
-  </p>
-<table>
-<% if @categories.empty? %>
-  Empty
-<% else %>
-<% @categories.each do |category| %>
-  <tr>
-    <td><%= h category.title %></td>
-    <td>Deleted at: <%= category.updated_at.to_s(:long) %></td>
-    <td><%= link_to 'Restore', :controller => :trash, :action => :restore_category, :id => category.id %></td>
-  </tr>
-<% end %>
-<% end %>
-</table>
+</p>
+<div id="categories_container">
+  <%= render :partial => 'list_of_categories' %>
+</div>
 <p>
     <b>Dishes:</b>
 </p>
-<table>
-<% if @dishes.empty? %>
-  Empty
-<% else %>
-  <% @dishes.each do |dish| %>
-    <tr>
-      <td><%= h dish.title %></td>
-      <td><%= link_to dish.category.title, dish.category %></td>
-      <td>Deleted at: <%= dish.updated_at.to_s(:long) %></td>
-      <td><%= link_to 'Restore', :controller => :trash, :action => :restore_dish, :id => dish.id %></td>
-    </tr>
-  <% end %>
-<% end %>
-</table>
-<br />
+<div id="dishes_container">
+  <%= render :partial => 'list_of_dishes' %>
+</div>
 
-<%= link_to 'Empty Trash', :controller => :trash, :action => :empty %>&nbsp;|&nbsp;
+<%= link_to 'Empty Trash','/trash/empty', :confirm => 'Are you shure?'  %>&nbsp;|
 <%= link_to 'All Categories', categories_path %>&nbsp;|&nbsp;
 <%= link_to 'All Dishes', dishes_path %>

@@ -1,20 +1,8 @@
-<h1>Dishes</h1>
+<h1>Dishes&nbsp;<span id="loader" style="display:none"><%=  image_tag 'loader.gif'%></span></h1>
+<div id="container">
+    <%= render :partial => 'list_of_dishes' %>
+</div>
 
-<table>
-
-<% @dishes.each do |dish| %>
-  <tr>
-    <td><%= link_to dish.title, dish %></td>
-    <td><%= link_to dish.category.title, dish.category %></td>
-    <td><%= link_to 'Edit', edit_dish_path(dish) %></td>
-    <td><%= link_to '[x]', dish, :method => :delete %></td>
-  </tr>
-<% end %>
-
-</table>
-
-<br />
-
-<%= link_to 'New Dish', new_dish_path %>&nbsp;|&nbsp;
-<%= link_to 'All Categories', categories_path %>&nbsp;|&nbsp;
+<%= link_to 'Add New Dish', new_dish_path %>&nbsp;|
+<%= link_to 'All Categories', categories_path %>&nbsp;|
 <%= link_to 'Trash', :controller => :trash, :action => :index %>

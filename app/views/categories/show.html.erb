@@ -1,36 +1,17 @@
+<h1><%=h @category.title %>&nbsp;<span id="loader" style="display:none"><%=  image_tag 'loader.gif'%></span></h1>
 <p>
-  <b>Category:</b>
-  <%=h @category.title %>
-</p>
-<p>
-  <b>Description:</b>
-</p>
-<p>
+  <b>Descriptions:</b>
   <%=h @category.description %>
 </p>
-<%= link_to 'Edit', edit_category_path(@category) %>&nbsp;|&nbsp;
-<% if @category.id != 1 %> 
-<%=  link_to 'Move to Trash', @category, :method => :delete %>&nbsp;|&nbsp;
-<% end %>
-<%= link_to 'All Categories', categories_path %>
-<% if @category.dishes.empty? %>
-<p>
-  <b>No Dishes on Category</b>
-</p>
-<% else %>
-<p>
-  <b>Dishes on Category: <%= @category.dishes.size %></b>
-</p>
-<% @iterator = 1 %>
-<% @category.dishes.each do |dish| %>
-<div>
-  <%= @iterator %>.&nbsp;
-   <% if !dish.is_deleted %>
-     <%= link_to  dish.title, dish %>
-   <% else %>
-     <%= dish.title %>&nbsp;<%= link_to 'Currently removed to trash', :controller => :trash %>
-    <% end %>
-  <% @iterator += 1 %>
+
+<%= link_to 'Edit Category', edit_category_path(@category) %>
+
+<div id="container">
+  <%= render :partial => 'list_of_dishes' %>
 </div>
-<% end %>
-<% end %>
+
+<%= link_to 'All Dishes', dishes_path %>&nbsp;|
+<%= link_to 'All Categories', categories_path %>&nbsp;|
+<%= link_to 'Trash', :controller => :trash, :action => :index %>
+<br>
+<%= flash[:foo] %>

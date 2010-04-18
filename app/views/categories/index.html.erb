@@ -1,18 +1,8 @@
-<h1>Categories</h1>
+<h1>Categories&nbsp;<span id="loader" style="display:none"><%=  image_tag 'loader.gif'%></span></h1>
+<div id="container">
+  <%= render :partial => 'list_of_categories' %>
+</div>
 
-<table>
- <% @categories.each do |category| %>
-  <tr>
-    <td><%=link_to category.title, category %>&nbsp;(<%= category.dishes.size %>)</td>
-    <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    <td><%= category.id == 1 ? '' : (link_to '[x]', category, :method => :delete) %></td>
-    
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'Add Category', new_category_path %>&nbsp;|&nbsp;
-<%= link_to 'All Dishes', dishes_path %>&nbsp;|&nbsp;
+<%= link_to 'Add New Category', new_category_path %>&nbsp;|
+<%= link_to 'All Dishes', dishes_path %>&nbsp;|
 <%= link_to 'Trash', :controller => :trash, :action => :index %>
