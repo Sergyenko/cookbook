@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20100416123311) do
     t.string   "title"
     t.text     "ingredients"
     t.text     "instructions"
-    t.boolean  "is_deleted",   :default => false
+    t.integer  "is_deleted",   :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
