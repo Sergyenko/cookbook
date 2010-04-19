@@ -8,7 +8,7 @@
   <tr>
       <td><%= h dish.title %></td>
       <td><%= link_to dish.category.title, dish.category %></td>
-      <td>Deleted at: <%= dish.updated_at.to_s(:long) %></td>
+      <td>Deleted at: <%= dish.updated_at.to_s(:short) %></td>
       <td>
           <%= link_to_remote 'Restore',
             :url => {:controller => :trash, :action => :restore_dish, :id => dish.id},

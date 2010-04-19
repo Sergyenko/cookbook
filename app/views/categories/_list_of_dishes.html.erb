@@ -39,8 +39,8 @@
    <tr>
     <td>.</td>
     <td><%= link_to dish.title, dish %></td>
-    <td><%= dish.created_at.to_s(:short) %></td>
-    <td><%= dish.updated_at.to_s(:short) %></td>
+    <td>| <%= dish.created_at.to_s(:short) %> |</td>
+    <td>| <%= dish.updated_at.to_s(:short) %> |</td>
     <td><%= link_to 'Edit', edit_dish_path(dish) %></td>
     <td>
         <%if dish.is_deleted == 1 %>

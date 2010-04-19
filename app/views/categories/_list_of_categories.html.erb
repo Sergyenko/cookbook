@@ -29,8 +29,8 @@
   <tr>
     <td>.</td>
     <td><%=link_to category.title, category %>&nbsp;(<%= category.dishes.size %>)</td>
-    <td><%= category.created_at.to_s(:short) %></td>
-    <td><%= category.updated_at.to_s(:short) %></td>
+    <td>| <%= category.created_at.to_s(:short) %> |</td>
+    <td>| <%= category.updated_at.to_s(:short) %> |</td>
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
     <td>
       <%  if category.id != 1 %>
