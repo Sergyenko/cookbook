@@ -5,24 +5,24 @@
         :url => {:action => :sort, :key => 'title'},
         :update => 'container',
         :before => "$('loader').show()",
-        :complete => "$('loader').hide()"
-    %>
+        :complete => "$('loader').hide(); $('sort_by_category').show();"
+    %>&nbsp;<span id="sort_by_category" style="display: none;"><</span>
   </th>
   <th align="left">
     <%= link_to_remote 'Created',
         :url => {:action => :sort, :key => 'created_at'},
         :update => 'container',
         :before => "$('loader').show()",
-        :complete => "$('loader').hide()"
-      %>
+        :complete => "$('loader').hide(); $('sort_by_created').show();"
+      %>&nbsp;<span id="sort_by_created" style="display: none;"><</span>
   </th>
   <th align="left">
     <%= link_to_remote 'Updated', 
         :url => {:action => :sort, :key => 'updated_at'},
         :update => 'container',
         :before => "$('loader').show()",
-        :complete => "$('loader').hide()"
-      %>
+        :complete => "$('loader').hide(); $('sort_by_updated').show(); "
+      %>&nbsp;<span id="sort_by_updated" style="display: none;"><</span>
   </th>
 
  <% @categories.each do |category| %>

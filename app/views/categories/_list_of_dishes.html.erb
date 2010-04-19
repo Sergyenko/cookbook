@@ -15,24 +15,24 @@
         :url => {:action => :sort_dishes_on_categry, :id => @category.id, :key => 'title'},
         :update => 'container',
         :before => "$('loader').show()",
-        :complete => "$('loader').hide()"
-      %>
+        :complete => "$('loader').hide(); $('sort_by_dish').show();"
+      %>&nbsp;<span id="sort_by_dish" style="display: none;"><</span>
     </th>
     <th align="left">
       <%= link_to_remote 'Created',
         :url => {:action => :sort_dishes_on_categry, :id => @category.id, :key => 'created_at'},
         :update => 'container',
         :before => "$('loader').show()",
-        :complete => "$('loader').hide()"
-      %>
+        :complete => "$('loader').hide(); $('sort_by_created').show();"
+      %>&nbsp;<span id="sort_by_created" style="display: none;"><</span>
     </th>
     <th align="left">
       <%= link_to_remote 'Updated',
         :url => {:action => :sort_dishes_on_categry, :id => @category.id, :key => 'updated_at'},
         :update => 'container',
         :before => "$('loader').show()",
-        :complete => "$('loader').hide()"
-      %>
+        :complete => "$('loader').hide(); $('sort_by_updated').show();"
+      %>&nbsp;<span id="sort_by_updated" style="display: none;"><</span>
     </th>
   </tr>
   <% @dishes.each do |dish| %>
